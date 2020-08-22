@@ -227,4 +227,5 @@ app.get("/src/main.html", (req, res) => {
 
     res.sendFile("main.html");
 });
-app.listen(3000);
+const PORT = process.env.PORT || 3000
+app.listen(PORT);

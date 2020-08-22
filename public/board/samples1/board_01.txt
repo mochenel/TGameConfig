@@ -1,0 +1,9 @@
+Show walls
+7 7
+v.Vx.Ph
+....k.p
+k.h.x.p
+..k.x.v
+hv..x..
+ppPxxPx
+k..sxxt

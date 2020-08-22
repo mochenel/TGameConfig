@@ -1,0 +1,9 @@
+Show walls
+7 7
+k.V...h
+...pk.p
+....x.p
+....x.v
+....x..
+...xx.p
+...sx.t

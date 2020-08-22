@@ -1,4 +1,4 @@
-Level 05
+Show walls
 7 7
 ..V...h
 ....k..

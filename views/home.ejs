@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			 Game Management
+		</title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../css/font-awesome.min.css">
+		<script src="../js/jquery.min.js"></script>
+		<script src="../js/popper.min.js"></script>
+		<script src="../js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="css/home.css">
+	</head>
+	<body>
+	<form id = "form" method = "post" action = "selection">
+		<div id = "container" class = "container">
+			<h1>
+				Game management
+			</h1>
+
+			<div id = "game-select" class = "form-group">
+				<label id = "lbl-select" class = "" >
+					Game title
+				</label > <br/>
+				<select class = "form-control" name = "game">
+					<option class = "form-control" value="Traversal game">Traversal game</option>
+					<option class = "form-control" value="Snake" disabled>Snake</option>
+				</select>
+			</div>
+				<button id = "btn-manager" class = "form-control btn btn-primary"> Manage </button>
+		</div>
+	</form>
+	</body>
+</html>

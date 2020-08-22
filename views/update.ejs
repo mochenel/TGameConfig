@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			 Edit
+		</title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../css/font-awesome.min.css">
+		<script src="../js/jquery.min.js"></script>
+		<script src="../js/popper.min.js"></script>
+		<script src="../js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="css/update.css">
+	</head>
+	<body>
+	<h1> Level  <%= level %> </h1>
+	<% if(error) {%>
+	<p class = "alert alert-danger"> <%=error%> </p>
+	<%}%>
+	<form id = "form" method = "post" action = "/check?row=<%=matrix.length%>&&col=<%=matrix[0].length%> &&level=<%=level%>">
+	<div id= "flex">
+		<div id = "container-1" class = "form-control">
+			<table id="table-1" class = "table">
+				<%for(var i = 0; i < matrix.length; i++) {%>
+					<tr>
+					<%for(var j = 0; j < matrix[i].length; j++) {%>
+					
+						<td>
+							<select id= "piece" class = "form-control" name = "piece<%=i%><%=j%>" >
+								<option class = "form-control" value="." <%=matrix[i].charAt(j) =='.' ?'selected':'' %> >.</option>
+								<option class = "form-control" value="s" <%=matrix[i].charAt(j) =='s' ?'selected':'' %>  >s</option>
+								<option class = "form-control" value="t" <%=matrix[i].charAt(j) =='t' ?'selected':'' %> >t</option>
+								<option class = "form-control" value="x" <%=matrix[i].charAt(j) =='x' ?'selected':'' %> >x</option>
+								<option class = "form-control" value="X" <%=matrix[i].charAt(j) =='X' ?'selected':'' %> >X</option>
+								<option class = "form-control" value="p" <%=matrix[i].charAt(j) =='p' ?'selected':'' %> >p</option>
+								<option class = "form-control" value="P" <%=matrix[i].charAt(j) =='P' ?'selected':'' %> >P</option>
+								<option class = "form-control" value="v" <%=matrix[i].charAt(j) =='v' ?'selected':'' %> >v</option>
+								<option class = "form-control" value="V" <%=matrix[i].charAt(j) =='V' ?'selected':'' %> >V</option>
+								<option class = "form-control" value="h" <%=matrix[i].charAt(j) =='h' ?'selected':'' %> >h</option>
+								<option class = "form-control" value="H" <%=matrix[i].charAt(j) =='H' ?'selected':'' %> >H</option>
+								<option class = "form-control" value="k" <%=matrix[i].charAt(j) =='k' ?'selected':'' %> >k</option>
+								<option class = "form-control" value="K" <%=matrix[i].charAt(j) =='K' ?'selected':'' %> >K</option>
+								
+							</select>
+						</td>
+						
+					<%}%>
+					</tr>
+				<%}%>
+			</table>
+		</div>
+		<div id = "container-2" class = "container form-control">
+		<table id="table-2" class = "table">
+				<%for(var i = 0; i < matrix.length; i++) {%>
+					<tr>
+					<%for(var j = 0; j < matrix[i].length; j++) {%>
+						<td>
+					<%
+					let hv = ['u','d','l','r','U','D','L','R']; // vertical and horizontal movers
+					var curr = matrix[i].charAt(j);
+					
+					var src = "";
+					var title = "";
+					if(curr.toLowerCase() =='x'){
+						src = "../images/tvl_x.png"; // wall pic
+						title = "wall";
+					}
+					else if(curr =='.' || hv.find(c=>c == matrix[i][j])){
+						src = "../images/tvl_e.png"; // square pic
+						title = "";
+					}
+					else if(curr =='t' || curr =='T'){
+						src = "../images/tvl_t.png"; // target pic
+						title = "target";
+					}
+					else if(curr =='s' || curr =='S'){
+						src = "../images/tvl_s.png"; // player pic
+						title = "player";
+					}
+					else if(curr =='h'){
+						src = "../images/tvl_sh0.png"; // closed horizontal switch
+						title = "closed horizontal switch";
+					}
+					else if(curr =='H'){
+						src = "../images/tvl_sh1.png"; // open horizontal switch
+						title = "open horizontal switch";
+					}
+					else if(curr =='v'){
+						src = "../images/tvl_sv0.png"; // colsed vertical switch
+						title = "closed vertical switch";
+					}
+					else if(curr =='V'){
+						src = "../images/tvl_sv1.png"; // open vertical switch
+						title = "open vertical switch";
+					}
+					else if(curr =='k'){
+						src = "../images/tvl_k1.png"; // available key(small k)
+						title = "available key";
+					}
+					else if(curr =='K'){
+						src = "../images/tvl_k0.png"; // unavailable key(big K)
+						title = "unavailable key";
+					}
+					else if(curr =='p'){
+						src = "../images/tvl_p0.png"; // closed port(small p)
+						title = "closed port";
+					}
+					else if(curr =='P'){
+						src = "../images/tvl_p1.png"; // open port(big P)
+						title = "open port";
+					}
+					else{
+
+					} %>
+					<img src =<%=src%> title = <%=title%> >
+						</td>
+					<%}%>
+					</tr>
+				<%}%>
+			</table>
+		</div>
+	</div>
+		<div id = "btn" class = "container">
+				<div id = "btn-check">
+					<button type = "submit"  class = "btn btn-primary" > Check </button>
+				</div>
+				<div id = "btn-restore">
+					<button type = "submit" class = "btn btn-primary" formaction = "/restore"> Restore </button>
+				</div>
+				<div id = "btn-save">
+					<button class = "btn btn-primary"  formaction = "/save?row=<%=matrix.length%>&&col=<%=matrix[0].length%> &&level=<%=level%>"> Save </button>
+				</div>
+			</div>
+	</form>
+	</body>
+</html>

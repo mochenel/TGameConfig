@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			 Game Settings
+		</title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../css/font-awesome.min.css">
+		<script src="../js/jquery.min.js"></script>
+		<script src="../js/popper.min.js"></script>
+		<script src="../js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="css/game.css">
+	</head>
+	<body>
+	<form id = "form" class = "container">
+			<h1 id="game">
+				<%= content.game %>
+			</h1>
+			<div id ="container" class = "table-responsive">
+				<table class = "table table-hover table-sm">
+					<tr>
+						<th>Level </th>
+						<th>File </th>
+						<th>Edit </th>
+					</tr>
+					<%for(var i = 0; i < content.samples1.length; i++) { %>
+					<tr>
+						<td> <%= i+1 %> </td>
+						<td> <%= content.samples1[i] %>  </td>
+						<td> <a href = "/update?id=samples1/<%=content.samples1[i] %>" id = "f<%= i+1 %>" class = "btn btn-primary"  >Edit </a></td>
+					</tr>
+					<%}%>
+					<%for(var i = 0; i < content.samples2.length; i++) { %>
+					<tr>
+						<td> <%= content.samples1.length +i+1 %> </td>
+						<td> <%= content.samples2[i] %>  </td>
+						<td> <a href = "/update?id=samples2/<%=content.samples2[i]%>"  id = "f<%= content.samples2.length +i+1%>" class = "btn btn-primary" >Edit </a></td>
+					</tr>
+					<%}%>
+				</table>
+			</div>
+			
+	</form>
+	<script >
+	function update(){
+	console.log("hello")
+	}
+	</script>
+	</body>
+</html>

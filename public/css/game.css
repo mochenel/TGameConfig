@@ -1,0 +1,16 @@
+body{
+    font-family:Arial;
+}
+#game{
+    text-align:center;
+    padding:20px;
+}
+th{
+    background-color:darkgray;
+    height:50px;
+}
+button {
+    justify-content:center;
+    width: 30%;
+    padding: 20px;
+}

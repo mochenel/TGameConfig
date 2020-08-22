@@ -6,7 +6,6 @@
   "scripts": {
    "start": "node App.js",
   "test": "mocha",
-  "postinstall": "bower install && grunt build"
   },
   "author": "freddy",
   "license": "ISC",

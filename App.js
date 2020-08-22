@@ -7,7 +7,7 @@ const directorypath1 = "../board/samples1";
 const directorypath2 = "../board/samples2";
 app.use(express.json());
  //parse application/x-www-form-urlencoded
-const urlencodedParser = bodyParser.urlencoded({ extended: false })
+const urlencodedParser = bodyParser.urlencoded({ extended: true})
 // parse application/json
 app.use(bodyParser.json())
 // allow ejs 

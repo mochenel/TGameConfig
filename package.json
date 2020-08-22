@@ -8,7 +8,7 @@
   "main": "App.js",
   "scripts": {
    "start": "node App.js",
-  "test": "node App.js",
+  "test": "node App.js"
   },
  "devDependencies": {
     "got": "^11.3.0",

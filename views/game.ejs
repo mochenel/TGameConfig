@@ -16,7 +16,12 @@
 	<form id = "form" class = "container">
 			<h1 id="game">
 				<%= content.game %>
+			
+					<button type="" class="btn btn-primary" formaction="/">Exit</button>
+			
+				
 			</h1>
+			
 			<div id ="container" class = "table-responsive">
 				<table class = "table table-hover table-sm">
 					<tr>
@@ -24,6 +29,7 @@
 						<th>File </th>
 						<th>Edit </th>
 					</tr>
+					
 					<%for(var i = 0; i < content.samples1.length; i++) { %>
 					<tr>
 						<td> <%= i+1 %> </td>

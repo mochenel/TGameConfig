@@ -6,11 +6,15 @@ body{
     padding:20px;
 }
 th{
-    background-color:darkgray;
+    background-color:rgb(24, 19, 19);
     height:50px;
 }
-button {
+/* button {
     justify-content:center;
     width: 30%;
     padding: 20px;
+} */
+.btn-exit{
+   justify-content: right;
+    
 }

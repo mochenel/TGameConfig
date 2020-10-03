@@ -15,15 +15,9 @@ app.set('view engine', 'ejs');
 
 app.use(express.static(path.join(__dirname, 'public')));
 // home route
-app.get("/", (req, res) => {
+app.get("./", (req, res) => {
     res.render("home");
 });
-
-// game route
-/*app.get("/game",(req, res) => {
-    res.render("game");
-});
-*/
 
 app.post("/selection", urlencodedParser, (req, res) => {
     const game = req.body.game;

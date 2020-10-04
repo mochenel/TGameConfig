@@ -13,7 +13,7 @@ app.use(bodyParser.json())
 // allow ejs 
 app.set('view engine', 'ejs');
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/public')));
 // home route
 app.get("/", (req, res) => {
     res.render("home");

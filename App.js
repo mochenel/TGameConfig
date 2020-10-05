@@ -16,11 +16,12 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, '/public')));
 // home route
 app.get("/", (req, res) => {
+    console.log("************  "+path.join(__dirname, '/public'))
     res.render("home");
 });
 
 app.post("/selection", urlencodedParser, (req, res) => {
-    console.log(path.join(__dirname, '/public'))
+    
     const game = req.body.game;
     const Files1 = [];
     const Files2 = [];

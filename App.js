@@ -20,6 +20,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/selection", urlencodedParser, (req, res) => {
+    console.log(path.join(__dirname, '/public'))
     const game = req.body.game;
     const Files1 = [];
     const Files2 = [];

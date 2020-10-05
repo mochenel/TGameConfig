@@ -5,6 +5,8 @@ const path = require('path');
 const fs = require('fs');
 const directorypath1 = "../board/samples1";
 const directorypath2 = "../board/samples2";
+process.env.PWD = process.cwd()
+app.use('/public',express.static(process.env.PWD+'/public'));
 app.use(express.json());
  //parse application/x-www-form-urlencoded
 const urlencodedParser = bodyParser.urlencoded({ extended: false})
@@ -13,10 +15,10 @@ app.use(bodyParser.json())
 // allow ejs 
 app.set('view engine', 'ejs');
 
-app.use(express.static(path.join(__dirname, '/public')));
+//app.use(express.static(path.join(__dirname, '/public')));
 // home route
 app.get("/", (req, res) => {
-    console.log("************  "+path.join(__dirname, '/public'))
+    console.log("************  "+express.static(process.env.PWD+'/public'))
     res.render("home");
 });
 

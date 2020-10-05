@@ -21,7 +21,7 @@ app.set(path.join(process.env.PWD, 'public'));
 app.use(express.static(path.join(process.env.PWD, 'public')));
 // home route
 app.get("/", (req, res) => {
-    console.log("************  "+path.join(process.env.PWD, 'public'))
+    console.log("************  "+path.join(process.env.PWD, 'public') + directorypath1)
     res.render("home");
 });
 

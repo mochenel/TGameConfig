@@ -16,12 +16,12 @@ app.set('view engine', 'ejs');
 //app.use(express.static(path.join(__dirname, '/public')));
 process.env.PWD = process.cwd();
 
-app.set('views', path.join(process.env.PWD, 'public'));
+app.set(path.join(process.env.PWD, 'public'));
 
 app.use(express.static(path.join(process.env.PWD, 'public')));
 // home route
 app.get("/", (req, res) => {
-    console.log("************  "+path.join(__dirname, '/public'))
+    console.log("************  "+path.join(process.env.PWD, 'public'))
     res.render("home");
 });
 

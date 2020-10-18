@@ -15,7 +15,7 @@ app.set('view engine', 'ejs');
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-const pathCheck = express.static(path.join(__dirname, 'public')) + "../board/samples1";
+const pathCheck = path.join(__dirname, 'public') + "../board/samples1";
 // home route
 app.get("/", (req, res) => {
     res.render("home",{pathCheck});

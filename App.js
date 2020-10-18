@@ -3,8 +3,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
 const fs = require('fs');
-const directorypath1 = "/board/samples1";
-const directorypath2 = "/board/samples2";
+const directorypath1 = "../board/samples1";
+const directorypath2 = "../board/samples2";
 app.use(express.json());
  //parse application/x-www-form-urlencoded
 const urlencodedParser = bodyParser.urlencoded({ extended: false})
@@ -15,10 +15,10 @@ app.set('view engine', 'ejs');
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-
+const pathCheck = express.static(path.join(__dirname, 'public') + "../board/samples1";
 // home route
 app.get("/", (req, res) => {
-    res.render("home");
+    res.render("home",{pathCheck});
 });
 
 app.post("/selection", urlencodedParser, (req, res) => {

@@ -3,7 +3,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
 const fs = require('fs');
-
+const directorypath1 = "/board/samples1";
+const directorypath2 = "/board/samples2";
 app.use(express.json());
  //parse application/x-www-form-urlencoded
 const urlencodedParser = bodyParser.urlencoded({ extended: false})
@@ -12,11 +13,9 @@ app.use(bodyParser.json())
 // allow ejs 
 app.set('view engine', 'ejs');
 
-//app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
-const pathCheck = path.join(__dirname, 'public') + "../board/samples1";
-const directorypath1 =path.join(__dirname, 'public')+ "/board/samples1";
-const directorypath2 = path.join(__dirname, 'public')+"/board/samples2";
+const pathCheck = path.join(__dirname, 'public') + "/board/samples1";
 // home route
 app.get("/", (req, res) => {
     res.render("home",{pathCheck});
@@ -67,7 +66,7 @@ app.get("/update", (req, res) => {
     restore = pathstr;
     const subs = pathstr.substring(pathstr.lastIndexOf("_") + 1, pathstr.lastIndexOf("."));
     if (path) {
-        const data = fs.readFileSync("../board/" + path);
+        const data = fs.readFileSync("/board/" + path);
         const dataArray = data.toString().split('\n');
         dataArray.pop();
         dataArray.shift();
@@ -201,7 +200,7 @@ app.post("/save", urlencodedParser, (req, res) => {
         }
         console.log(text)
         console.log("**"+restore)
-        const filepath = "../board/" + restore;
+        const filepath = "/board/" + restore;
         fs.writeFile(filepath, text, 'utf8', function (err) {
             if (err) {
                 throw err

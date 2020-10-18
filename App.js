@@ -61,13 +61,12 @@ let col = 0;
 let resArray = [];
 // update file
 app.get("/update", (req, res) => {
-    app.use(express.static(path.join(__dirname, 'public')));
     const filePath = req.query.id;
     const pathstr = path.toString();
     restore = pathstr;
     const subs = pathstr.substring(pathstr.lastIndexOf("_") + 1, pathstr.lastIndexOf("."));
     if (path) {
-        const data = fs.readFileSync("/board/" + filePath);
+        const data = fs.readFileSync(path.join(__dirname, 'public')+"/board/" + filePath);
         const dataArray = data.toString().split('\n');
         dataArray.pop();
         dataArray.shift();
@@ -144,7 +143,6 @@ app.post("/restore", urlencodedParser, (req, res) => {
 
 app.post("/save", urlencodedParser, (req, res) => {
 
-    app.use(express.static(path.join(__dirname, 'public')));
     let player = 0;
     let target = 0;
     let playerError = null;
@@ -201,7 +199,7 @@ app.post("/save", urlencodedParser, (req, res) => {
         }
         console.log(text)
         console.log("**"+restore)
-        const filepath = "/board/" + restore;
+        const filepath = path.join(__dirname, 'public')+"/board/" + restore;
         fs.writeFile(filepath, text, 'utf8', function (err) {
             if (err) {
                 throw err

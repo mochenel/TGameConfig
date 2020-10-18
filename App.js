@@ -61,6 +61,7 @@ let col = 0;
 let resArray = [];
 // update file
 app.get("/update", (req, res) => {
+    app.use(express.static(path.join(__dirname, 'public')));
     const path = req.query.id;
     const pathstr = path.toString();
     restore = pathstr;
@@ -143,7 +144,7 @@ app.post("/restore", urlencodedParser, (req, res) => {
 
 app.post("/save", urlencodedParser, (req, res) => {
 
-
+    app.use(express.static(path.join(__dirname, 'public')));
     let player = 0;
     let target = 0;
     let playerError = null;

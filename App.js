@@ -62,12 +62,12 @@ let resArray = [];
 // update file
 app.get("/update", (req, res) => {
     app.use(express.static(path.join(__dirname, 'public')));
-    const path = req.query.id;
+    const filePath = req.query.id;
     const pathstr = path.toString();
     restore = pathstr;
     const subs = pathstr.substring(pathstr.lastIndexOf("_") + 1, pathstr.lastIndexOf("."));
     if (path) {
-        const data = fs.readFileSync("/board/" + path);
+        const data = fs.readFileSync("/board/" + filePath);
         const dataArray = data.toString().split('\n');
         dataArray.pop();
         dataArray.shift();

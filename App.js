@@ -15,10 +15,9 @@ const directorypath1 = path.join(__dirname, 'public') +"/board/samples1";
 const directorypath2 = path.join(__dirname, 'public') +"/board/samples2";
 app.use(express.static(path.join(__dirname, 'public')));
 
-const pathCheck = path.join(__dirname, 'public') + "/board/samples1";
 // home route
 app.get("/", (req, res) => {
-    res.render("home",{pathCheck});
+    res.render("home");
 });
 
 app.post("/selection", urlencodedParser, (req, res) => {
@@ -197,15 +196,14 @@ app.post("/save", urlencodedParser, (req, res) => {
             text = text + dataArray[i] +"\n";
             
         }
-        console.log(text)
-        console.log("**"+restore)
+        
         const filepath = path.join(__dirname, 'public')+"/board/" + restore;
         fs.writeFile(filepath, text, 'utf8', function (err) {
             if (err) {
                 throw err
             }
             else {
-                console.log("saved");
+               
                 res.redirect(307,"/selection");
             }
             

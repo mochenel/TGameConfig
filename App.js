@@ -62,7 +62,7 @@ let resArray = [];
 // update file
 app.get("/update", (req, res) => {
     const filePath = req.query.id;
-    const pathstr = path.toString();
+    const pathstr = filePath.toString();
     restore = pathstr;
     const subs = pathstr.substring(pathstr.lastIndexOf("_") + 1, pathstr.lastIndexOf("."));
     if (path) {

@@ -3,6 +3,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
 const con = require("./modules/connection.js");
+const cors = require('cors');
+app.use(cors());
 
 app.use(express.json());
  //parse application/x-www-form-urlencoded

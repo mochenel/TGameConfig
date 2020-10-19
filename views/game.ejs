@@ -34,16 +34,10 @@
 					<tr>
 						<td> <%= i+1 %> </td>
 						<td> <%= content.samples1[i] %>  </td>
-						<td> <a href = "/update?id=samples1/<%=content.samples1[i] %>" id = "f<%= i+1 %>" class = "btn btn-primary"  >Edit </a></td>
+						<td> <a href = "/update?id=<%=content.samples1[i] %>" id = "f<%= i+1 %>" class = "btn btn-primary"  >Edit </a></td>
 					</tr>
 					<%}%>
-					<%for(var i = 0; i < content.samples2.length; i++) { %>
-					<tr>
-						<td> <%= content.samples1.length +i+1 %> </td>
-						<td> <%= content.samples2[i] %>  </td>
-						<td> <a href = "/update?id=samples2/<%=content.samples2[i]%>"  id = "f<%= content.samples2.length +i+1%>" class = "btn btn-primary" >Edit </a></td>
-					</tr>
-					<%}%>
+
 				</table>
 			</div>
 			

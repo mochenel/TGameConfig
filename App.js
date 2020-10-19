@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
-const fs = require('fs');
+const con = require("./modules/connection.js");
 
 app.use(express.json());
  //parse application/x-www-form-urlencoded
@@ -19,37 +19,33 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get("/", (req, res) => {
     res.render("home");
 });
+// return text given id
+app.get("/level",(req,res)=>{
+    let {id} = req.query;
+    const querySelect = `Select fileContent from TLevel where id = '${id}'`;
+    let result =  con.query(querySelect)
+ 
+    const dataArray = result[0].fileContent
+    res.send(dataArray)
+    
+})
 
 app.post("/selection", urlencodedParser, (req, res) => {
-    
     const game = req.body.game;
-    const Files1 = [];
-    const Files2 = [];
-    // samples copy
-    const f1 = fs.readdirSync(directorypath1);
-    // store all files in samples1 to Files1 array
-    f1.forEach(file => {
-        if (file.startsWith("board")) {
-            Files1.push(file);
+    let Files =[];
+    const querySelect = "Select fileName from TLevel order by id";
+    let result = con.query(querySelect)
+       Files =  result.map(item=>{
+           console.log(item.fileName)
+          return item.fileName
+        })
 
-        }
 
-    });
-    // samples2 copy
-    const f2 = fs.readdirSync(directorypath2);
-    f2.forEach(file => {
-        if (file.startsWith("board")) {
-            Files2.push(file);
-
-        }
-
-    });
-  
     const content = {
         game: game,
-        samples1:Files1,
-        samples2:Files2,
+        samples1:Files,
     }
+    console.log(Files)
     res.render("game", { content });
  
 });
@@ -60,21 +56,20 @@ let col = 0;
 let resArray = [];
 // update file
 app.get("/update", (req, res) => {
-    const filePath = req.query.id;
-    const pathstr = filePath.toString();
+    const fileName = req.query.id;
+    const pathstr = fileName.toString();
     restore = pathstr;
     const subs = pathstr.substring(pathstr.lastIndexOf("_") + 1, pathstr.lastIndexOf("."));
-    if (path) {
-        const data = fs.readFileSync(path.join(__dirname, 'public')+"/board/" + filePath);
-        const dataArray = data.toString().split('\n');
-        dataArray.pop();
-        dataArray.shift();
-        dataArray.shift();
-        row = dataArray.length;
-        col = dataArray[0].length;
-        resArray = dataArray.slice();
-        res.render("update", { matrix: dataArray, level: subs, error: null})
-    }
+ 
+        const querySelect = `Select fileContent from TLevel where fileName = '${pathstr}' order by id`;
+       let result =  con.query(querySelect)
+    
+       const dataArray = result[0].fileContent.toString().trim().split('\n');
+       dataArray.shift();
+       dataArray.shift();
+            console.log("*****"+dataArray[0])
+            res.render("update", { matrix: dataArray, level: subs, error: null})
+        
    
 } 
 );
@@ -146,6 +141,7 @@ app.post("/save", urlencodedParser, (req, res) => {
     let target = 0;
     let playerError = null;
     let targetError = null;
+    let {level} = req.query;
     const checkArray = [];
     for (var i = 0; i < req.query.row; i++) {
         var tempStr = "";
@@ -197,21 +193,11 @@ app.post("/save", urlencodedParser, (req, res) => {
             
         }
         
-        const filepath = path.join(__dirname, 'public')+"/board/" + restore;
-        fs.writeFile(filepath, text, 'utf8', function (err) {
-            if (err) {
-                throw err
-            }
-            else {
-               
-                res.redirect(307,"/selection");
-            }
-            
-        }
-        );
+        const queryUpdate = `update TLevel set fileContent = '${text}' where id = ${level}`;
+        con.query(queryUpdate)
+            res.redirect(307,"/selection");
+       
            
-        
-        //res.render("update", { matrix: dataArray, level: subs, error: null })
     }
 
     

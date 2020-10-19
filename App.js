@@ -22,6 +22,7 @@ app.get("/", (req, res) => {
 // return text given id
 app.get("/level",(req,res)=>{
     let {id} = req.query;
+    console.log("************"+id)
     const querySelect = `Select fileContent from TLevel where id = '${id}'`;
     let result =  con.query(querySelect)
  
